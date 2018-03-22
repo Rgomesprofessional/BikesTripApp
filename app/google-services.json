@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "99425228974",
+    "firebase_url": "https://bikes-trip-app.firebaseio.com",
+    "project_id": "bikes-trip-app",
+    "storage_bucket": "bikes-trip-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99425228974:android:f198d962c8f517ca",
+        "android_client_info": {
+          "package_name": "com.example.rgome.bikestripapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99425228974-lk03gj76o1l3l4akd20p0lnfle2odra8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rgome.bikestripapp",
+            "certificate_hash": "29ccd952318a9971f4835b22f743f6a4df61829a"
+          }
+        },
+        {
+          "client_id": "99425228974-76ii7u07mijb3k561odvu853q3fsprc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_bBA5T3BQhntEWzG7DZf8RB6e5zx3nas"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99425228974-76ii7u07mijb3k561odvu853q3fsprc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
