@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.example.rgome.bikestripapp.AccountActivity.AccountSettings;
 import com.example.rgome.bikestripapp.AccountActivity.Login;
 import com.example.rgome.bikestripapp.AccountActivity.SignUp;
+import com.example.rgome.bikestripapp.AppContent.About;
+import com.example.rgome.bikestripapp.AppContent.FetchDataStations;
+import com.example.rgome.bikestripapp.AppContent.MapsActivity;
+import com.example.rgome.bikestripapp.AppContent.Stations;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
                         posLongitude.clear();
                     }
 
-             //       FetchData process = new FetchData();
-            //        process.execute();
+                    FetchDataStations process = new FetchDataStations();
+                    process.execute();
                 }
             }
 
@@ -79,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
         btnStations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-        //        Intent intent = new Intent(MainActivity.this, Stations.class);
-          //      startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, Stations.class);
+            startActivity(intent);
             }
         });
 
@@ -88,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-            //    startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(intent);
             }
         });
 
@@ -97,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   Intent intent = new Intent(MainActivity.this, About.class);
-            //    startActivity(intent);
+           Intent intent = new Intent(MainActivity.this, About.class);
+           startActivity(intent);
             }
         });
     }
