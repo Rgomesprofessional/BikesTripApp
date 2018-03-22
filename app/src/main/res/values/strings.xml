@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Bikes Trip App</string>
+    <string name="minimum_password">minimum passwordddd</string>
+    <string name="auth_failed">auth failedddd</string>
 </resources>
