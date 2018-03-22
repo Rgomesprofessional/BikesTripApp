@@ -6,31 +6,47 @@
     android:layout_height="match_parent"
     tools:context="com.example.rgome.bikestripapp.MainActivity">
 
-    <Button
-        android:id="@+id/changePass"
-        style="?android:textAppearanceSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="btn_change"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="199dp"
-        tools:layout_editor_absoluteY="211dp" />
-
-    <TextView
-        android:id="@+id/useremail"
+    <Spinner
+        android:id="@+id/selectCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/old_email"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/btnStations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/selectCity"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_stations" />
+
+    <Button
+        android:id="@+id/btnMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selectCity"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
-        android:gravity="center"
-        android:hint="email_id"
-        android:textSize="30sp"
-        android:textStyle="bold|italic" />
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_map" />
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/selectCity"
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_about" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnStations"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        app:srcCompat="@mipmap/bike" android:contentDescription="@string/img_bike" />
 
 </RelativeLayout>

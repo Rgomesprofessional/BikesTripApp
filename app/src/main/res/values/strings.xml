@@ -2,4 +2,17 @@
     <string name="app_name">Bikes Trip App</string>
     <string name="minimum_password">minimum passwordddd</string>
     <string name="auth_failed">auth failedddd</string>
+    <string name="txt_about_1">Bikes Locator App was created in order to the user be able to find the bike stations available in the selected city.</string>
+    <string name="txt_about_3">Another option available to the user is clicking on the map in order to see where the stations are located and details like the distance between each other.</string>
+    <string name="txt_about_2">Selecting the city the user can have the option of seeing the list of stations and its details if clicked the station shows the weather.</string>
+    <string name="btn_stations">Stations</string>
+    <string name="btn_map">Map</string>
+    <string name="btn_about">About</string>
+    <string name="img_bike">Cyclist</string>
+    <string name="txt_about_4">Created by Romulo Gomes</string>
+    <string name="txt_about_5">Linkedin: https://www.linkedin.com/in/rgomesprofessional</string>
+    <string name="txt_about_6">Web Site: http://rgomes.16mb.com</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
