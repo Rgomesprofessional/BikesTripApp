@@ -44,7 +44,11 @@
 
         <activity
             android:name=".AppContent.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".AppContent.MapsActivityTrack"
+            android:label="@string/title_activity_maps_track" />
+        <activity android:name=".AppContent.TrackAddInfo"></activity>
     </application>
 
 </manifest>

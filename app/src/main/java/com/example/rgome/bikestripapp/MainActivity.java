@@ -36,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> moreInfo = new ArrayList<String>();
     public static ArrayList<Double> posLatitude = new ArrayList<Double>();
     public static ArrayList<Double> posLongitude = new ArrayList<Double>();
-    Button btnStations;
-    Button btnMap;
-    Button btnAbout;
+    private Button btnStations;
+    private Button btnMap;
+    private Button btnMapTrack;
+    private Button btnAbout;
 
     String[] cities = {"Select City...", "Brisbane", "Bruxelles-Capitale", "Namur", "Santander", "Seville", "Valence", "Amiens", "Besancon", "Cergy-Pontoise", "Creteil", "Lyon", "Marseille", "Mulhouse", "Nancy", "Nantes", "Rouen", "Toulouse", "Dublin", "Toyama", "Vilnius", "Luxembourg", "Lillestrom", "Kazan", "Goteborg", "Lund", "Stockholm", "Ljubljana"};
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         selectCity = (Spinner) findViewById(R.id.selectCity);
         btnStations = (Button) findViewById(R.id.btnStations);
         btnMap = (Button) findViewById(R.id.btnMap);
+        btnMapTrack = (Button) findViewById(R.id.btnMapTrack);
         btnAbout = (Button) findViewById(R.id.btnAbout);
 
         //Set cities in the spinner
@@ -94,6 +96,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(intent);
+            }
+        });
+
+        //Show map of bike locations
+        btnMapTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
 
