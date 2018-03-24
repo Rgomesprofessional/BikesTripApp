@@ -1,24 +1,91 @@
 package com.example.rgome.bikestripapp.AppContent;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.rgome.bikestripapp.MainActivity;
 import com.example.rgome.bikestripapp.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 public class TrackAddInfo extends AppCompatActivity {
-    private TextView txtTest1;
-    private TextView txtTest2;
+
+    private TextView txtLocation;
+    private EditText eTxtTitle;
+    private TextView txtDate;
+    private EditText eTxtDescription;
+    private Button btnSendDataFirebase;
+    private DatabaseReference mDatabase;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_add_info);
 
-        txtTest1 = (TextView) findViewById(R.id.txtTest1);
-        txtTest2 = (TextView) findViewById(R.id.txtTest2);
+        txtLocation = (TextView) findViewById(R.id.txtLocation);
+        txtDate = (TextView) findViewById(R.id.txtDate);
+        eTxtTitle = (EditText) findViewById(R.id.eTxtTitle);
+        eTxtDescription = (EditText) findViewById(R.id.eTxtDescription);
+        btnSendDataFirebase = (Button) findViewById(R.id.btnSendDataFirebase);
 
-        txtTest1.setText(MapsActivity.startLat + "sssssss" + MapsActivity.startLng);
-        txtTest2.setText(MapsActivity.finishLat + "fffffff" + MapsActivity.finishLng);
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        userId = user.getUid();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(userId);
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = df.format(c);
+
+        txtLocation.setText("Location: " + "bla lba");
+        txtDate.setText("Date: " + formattedDate);
+
+        btnSendDataFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String location = txtLocation.getText().toString().trim();
+                String date = txtDate.getText().toString().trim();
+                String title = eTxtTitle.getText().toString().trim();
+                String description = eTxtDescription.getText().toString().trim();
+
+                HashMap<String, String> dataMap = new HashMap<String, String>();
+
+                dataMap.put("Location", location);
+                dataMap.put("Date", date);
+                dataMap.put("Title", title);
+                dataMap.put("Description", description);
+
+                System.out.println("rrrrrrrrrrrr" + location + date + title + description);
+
+                mDatabase.push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(TrackAddInfo.this, "Stored..", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(TrackAddInfo.this, "Error..", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
     }
 }
