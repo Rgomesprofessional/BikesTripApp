@@ -19,6 +19,7 @@ import com.example.rgome.bikestripapp.AccountActivity.AccountSettings;
 import com.example.rgome.bikestripapp.AccountActivity.Login;
 import com.example.rgome.bikestripapp.AccountActivity.SignUp;
 import com.example.rgome.bikestripapp.AppContent.About;
+import com.example.rgome.bikestripapp.AppContent.FavoriteTrips;
 import com.example.rgome.bikestripapp.AppContent.FetchDataStations;
 import com.example.rgome.bikestripapp.AppContent.MapsActivity;
 import com.example.rgome.bikestripapp.AppContent.Stations;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnMap;
     private Button btnMapTrack;
     private Button btnAbout;
+    private Button btnFavoriteTrips;
 
     String[] cities = {"Select City...", "Brisbane", "Bruxelles-Capitale", "Namur", "Santander", "Seville", "Valence", "Amiens", "Besancon", "Cergy-Pontoise", "Creteil", "Lyon", "Marseille", "Mulhouse", "Nancy", "Nantes", "Rouen", "Toulouse", "Dublin", "Toyama", "Vilnius", "Luxembourg", "Lillestrom", "Kazan", "Goteborg", "Lund", "Stockholm", "Ljubljana"};
 
@@ -52,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         selectCity = (Spinner) findViewById(R.id.selectCity);
         btnStations = (Button) findViewById(R.id.btnStations);
         btnMap = (Button) findViewById(R.id.btnMap);
-        btnMapTrack = (Button) findViewById(R.id.btnMapTrack);
         btnAbout = (Button) findViewById(R.id.btnAbout);
+        btnFavoriteTrips = (Button) findViewById(R.id.btnFavoriteTrips);
 
         //Set cities in the spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, cities);
@@ -99,21 +101,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Show map of bike locations
-        btnMapTrack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         //Show about
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
            Intent intent = new Intent(MainActivity.this, About.class);
            startActivity(intent);
+            }
+        });
+
+        //Show about
+        btnFavoriteTrips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FavoriteTrips.class);
+                startActivity(intent);
             }
         });
     }

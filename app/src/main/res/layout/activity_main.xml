@@ -50,11 +50,11 @@
         app:srcCompat="@mipmap/bike" android:contentDescription="@string/img_bike" />
 
     <Button
-        android:id="@+id/btnMapTrack"
+        android:id="@+id/btnFavoriteTrips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/btnStations"
         android:layout_alignTop="@+id/imageView"
-        android:text="Button" />
+        android:text="Favorites" />
 
 </RelativeLayout>

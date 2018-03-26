@@ -1,5 +1,6 @@
 package com.example.rgome.bikestripapp.AppContent;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,8 +58,8 @@ public class TrackAddInfo extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = df.format(c);
 
-        txtLocation.setText("Location: " + "bla lba");
-        txtDate.setText("Date: " + formattedDate);
+        txtLocation.setText("bla lba");
+        txtDate.setText(formattedDate);
 
         btnSendDataFirebase.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +77,26 @@ public class TrackAddInfo extends AppCompatActivity {
                 dataMap.put("Title", title);
                 dataMap.put("Description", description);
 
+                String info = "\n" + location + "\n" + date + "\n\n" + title + "\n" + description + "\n";
                 System.out.println("rrrrrrrrrrrr" + location + date + title + description);
 
+              /*  mDatabase.push().setValue(location);
+                mDatabase.push().setValue(date);
+                mDatabase.push().setValue(title);
+                mDatabase.push().setValue(description);
+*/
                 mDatabase.push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(TrackAddInfo.this, "Stored..", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(TrackAddInfo.this, FavoriteTrips.class));
+                        } else {
+                            Toast.makeText(TrackAddInfo.this, "Error..", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+               /* mDatabase.addListenerForSingleValueEvent(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
@@ -84,7 +105,7 @@ public class TrackAddInfo extends AppCompatActivity {
                             Toast.makeText(TrackAddInfo.this, "Error..", Toast.LENGTH_LONG).show();
                         }
                     }
-                });
+                });*/
             }
         });
     }
