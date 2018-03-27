@@ -63,8 +63,8 @@ public class FavoriteTrips extends AppCompatActivity {
                 //System.out.println("qqqqqqqqqqqqqqqqqqqq" + storeReference +"tt" +ds.get);
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if(ds.getKey().equals("Title")){
-                        titleTrip =  ds.getKey() + ":  " + ds.getValue();
+                    if(ds.getKey().equals("title")){
+                        titleTrip =  ds.getKey().toUpperCase() + ":  " + ds.getValue();
                         dataTrip.add(titleTrip);
                         dataReference.add(dataSnapshot.getRef());
                       //  bu.add(dataSnapshot.getRef());
