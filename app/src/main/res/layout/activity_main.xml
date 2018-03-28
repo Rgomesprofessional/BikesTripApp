@@ -44,17 +44,28 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnStations"
+        android:layout_below="@+id/btnFavoriteTrips"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        app:srcCompat="@mipmap/bike" android:contentDescription="@string/img_bike" />
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/img_bike"
+        app:srcCompat="@mipmap/bike" />
 
     <Button
         android:id="@+id/btnFavoriteTrips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/btnStations"
-        android:layout_alignTop="@+id/imageView"
-        android:text="Favorites" />
+        android:layout_below="@+id/btnStations"
+        android:layout_marginTop="14dp"
+        android:text="Favorites"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnFavoriteTrips"
+        android:layout_alignStart="@+id/btnAbout"
+        android:text="Logout" />
 
 </RelativeLayout>

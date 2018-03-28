@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Double> posLongitude = new ArrayList<Double>();
     private Button btnStations;
     private Button btnMap;
-    private Button btnMapTrack;
+    private Button btnLogout;
     private Button btnAbout;
     private Button btnFavoriteTrips;
 
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnStations = (Button) findViewById(R.id.btnStations);
         btnMap = (Button) findViewById(R.id.btnMap);
         btnAbout = (Button) findViewById(R.id.btnAbout);
+        btnLogout = (Button) findViewById(R.id.btnLogout);
         btnFavoriteTrips = (Button) findViewById(R.id.btnFavoriteTrips);
 
         //Set cities in the spinner
@@ -116,6 +117,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, FavoriteTrips.class);
                 startActivity(intent);
+            }
+        });
+
+        //Show about
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AccountSettings.class));
             }
         });
     }

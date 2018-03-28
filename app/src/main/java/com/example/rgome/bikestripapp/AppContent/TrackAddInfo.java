@@ -4,7 +4,10 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,9 +30,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static android.os.Environment.getExternalStoragePublicDirectory;
 
 public class TrackAddInfo extends AppCompatActivity {
 
@@ -47,7 +54,10 @@ public class TrackAddInfo extends AppCompatActivity {
     private Button btnTakePicture;
     private ImageView imgPic;
     private Uri imgUri;
+    private String mCurrentPhotoPath;
+    private Boolean picSwitch;
 
+    static final int REQUEST_TAKE_PHOTO = 1;
     private static final int GALLERY_INTENT = 2;
     public static final String FB_STORAGE_PATH = "image/";
     public static final String FB_DATABASE_PATH = "image";
@@ -85,20 +95,6 @@ public class TrackAddInfo extends AppCompatActivity {
         txtLocFinish.setText(MapsActivity.locFinish);
         txtDate.setText(formattedDate);
 
-
-        btnGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            //    Intent intent = new Intent(Intent.ACTION_PICK);
-             //   intent.setType("image/*");
-             //   startActivityForResult(intent, GALLERY_INTENT);
-
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select image"), REQUEST_CODE);
-            }
-        });
 
         btnSendDataFirebase.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +142,28 @@ public class TrackAddInfo extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please you need a title, description and image", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        btnGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //    Intent intent = new Intent(Intent.ACTION_PICK);
+                //   intent.setType("image/*");
+                //   startActivityForResult(intent, GALLERY_INTENT);
+                picSwitch = false;
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select image"), REQUEST_CODE);
+            }
+        });
+
+        btnTakePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picSwitch = true;
+                dispatchTakePictureIntent();
             }
         });
 
@@ -235,11 +253,71 @@ public class TrackAddInfo extends AppCompatActivity {
 */
     }
 
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        //File storageDir =  getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir =  getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        System.out.println("rrrrrrr" + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        System.out.println("xxxxxxxxx" + mCurrentPhotoPath);
+        return image;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                System.out.println("99999999999999999999999");
+                ex.printStackTrace();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileproviderBikesTripApp",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        System.out.println("111111    " + mediaScanIntent);
+        File f = new File(mCurrentPhotoPath);
+        //File f = new File("storage/emulated/0/"+DIRECTORY_DCIM, "rrrr.jpg");
+        System.out.println("222222   " + f);
+        Uri contentUri = Uri.fromFile(f);
+        System.out.println("333333   " + contentUri);
+        mediaScanIntent.setData(contentUri);
+        System.out.println("4444444    " + mediaScanIntent);
+        this.sendBroadcast(mediaScanIntent);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
+        System.out.println(picSwitch + "tttttttttttttttttttttttttttttttttttttttt");
+        if(picSwitch){
+            galleryAddPic();
+        } else {
 
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            imgUri = data.getData();
+            if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                imgUri = data.getData();
 
            /* try{
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
@@ -249,6 +327,7 @@ public class TrackAddInfo extends AppCompatActivity {
             } catch (IOException e){
                 e.printStackTrace();
             }*/
+            }
         }
     }
 
