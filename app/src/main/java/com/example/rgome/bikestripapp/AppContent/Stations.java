@@ -17,6 +17,8 @@ import com.example.rgome.bikestripapp.R;
 import java.util.ArrayList;
 
 public class Stations extends AppCompatActivity {
+
+    //Attributes
     public static ArrayList<String> weatherInfo = new ArrayList<String>();
     public static Integer posLatLng;
     private ListView lvStations;
@@ -44,6 +46,7 @@ public class Stations extends AppCompatActivity {
                 FetchDataWeather process = new FetchDataWeather();
                 process.execute();
 
+                //Timer to show weather activity
                 new CountDownTimer(2000, 2000) {
                     public void onTick(long millisecondsUntilDone){
                         Toast.makeText(Stations.this, "Wait a second", Toast.LENGTH_SHORT).show();

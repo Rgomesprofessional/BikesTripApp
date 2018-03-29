@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.rgome.bikestripapp.MainActivity;
 import com.example.rgome.bikestripapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AccountSettings extends AppCompatActivity {
 
+    //Attributes
     private Button btnChangePassword, btnRemoveUser, changePassword, remove, signOut;
     private TextView email;
     private EditText oldEmail, password, newPassword;
@@ -32,11 +32,11 @@ public class AccountSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
 
-        //get firebase auth instance
+        //Get firebase auth instance
         auth = FirebaseAuth.getInstance();
         email = (TextView) findViewById(R.id.useremail);
 
-        //get current user
+        //Get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         setDataToView(user);
 
@@ -83,7 +83,7 @@ public class AccountSettings extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
-
+        //Change Password
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +98,7 @@ public class AccountSettings extends AppCompatActivity {
             }
         });
 
+        //Change password
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +130,7 @@ public class AccountSettings extends AppCompatActivity {
             }
         });
 
+        //Remove User
         btnRemoveUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +154,8 @@ public class AccountSettings extends AppCompatActivity {
                 }
             }
         });
+
+        //Sign Out
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +169,7 @@ public class AccountSettings extends AppCompatActivity {
         email.setText("User Email: " + user.getEmail());
     }
 
-    // this listener will be called when there is change in firebase user session
+    //This listener will be called when there is change in firebase user session
     FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
         @SuppressLint("SetTextI18n")
         @Override
@@ -184,7 +188,7 @@ public class AccountSettings extends AppCompatActivity {
 
     };
 
-    //sign out method
+    //Sign out
     public void signOut() {
         auth.signOut();
 

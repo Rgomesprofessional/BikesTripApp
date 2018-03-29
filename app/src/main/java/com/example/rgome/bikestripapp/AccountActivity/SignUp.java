@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity {
 
+    //Attributes
     private EditText inputEmail, inputPassword;     //hit option + enter if you on mac , for windows hit ctrl + enter
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
@@ -48,6 +49,8 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+
+        //Sign in
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +58,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        //Sign up
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +82,7 @@ public class SignUp extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
+
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {

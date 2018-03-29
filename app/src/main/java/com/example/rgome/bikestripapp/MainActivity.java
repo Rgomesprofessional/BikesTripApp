@@ -31,7 +31,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    //Variables
+
+    //Attributes
     public static Spinner selectCity;
     public static ArrayList<String> locations = new ArrayList<String>();
     public static ArrayList<String> moreInfo = new ArrayList<String>();

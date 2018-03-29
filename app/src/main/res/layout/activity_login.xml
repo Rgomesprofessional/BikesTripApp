@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp">
@@ -30,11 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="hint_email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
-
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
 
 
         <EditText
@@ -42,10 +41,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="hint_password"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
 
 
         <!-- Login Button -->
@@ -55,8 +54,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/colorAccent"
-            android:text="btn_login"
+            android:background="@color/colorPrimary"
+            android:text="Sign in"
             android:textColor="@android:color/black" />
 
         <Button
@@ -65,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
-            android:text="forgot_password"
+            android:text="Forgot Password"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent" />
 
@@ -77,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:text="link_to_register"
+            android:text="Register"
             android:textAllCaps="false"
             android:textSize="15dp"
             tools:ignore="SpUsage" />

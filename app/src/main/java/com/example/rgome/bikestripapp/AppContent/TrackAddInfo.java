@@ -40,6 +40,7 @@ import static android.os.Environment.getExternalStoragePublicDirectory;
 
 public class TrackAddInfo extends AppCompatActivity {
 
+    //Attributes
     private TextView txtLocStart;
     private TextView txtLocFinish;
     private EditText eTxtTitle;
@@ -58,12 +59,10 @@ public class TrackAddInfo extends AppCompatActivity {
     private Boolean picSwitch;
 
     static final int REQUEST_TAKE_PHOTO = 1;
-    private static final int GALLERY_INTENT = 2;
     public static final String FB_STORAGE_PATH = "image/";
     public static final String FB_DATABASE_PATH = "image";
     public static final int REQUEST_CODE = 1234;
 
-  //  @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +76,6 @@ public class TrackAddInfo extends AppCompatActivity {
         btnSendDataFirebase = (Button) findViewById(R.id.btnSendDataFirebase);
         btnGallery = (Button) findViewById(R.id.btnGallery);
         btnTakePicture = (Button) findViewById(R.id.btnTakePicture);
-      //  imgPic = (ImageView) findViewById(R.id.imgPic);
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -86,16 +84,16 @@ public class TrackAddInfo extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference().child(userId);
         mStorage = FirebaseStorage.getInstance().getReference(FB_DATABASE_PATH);
 
+        //Format date
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = df.format(c);
 
-        //txtLocation.setText("bla lba");
         txtLocStart.setText(MapsActivity.locStart);
         txtLocFinish.setText(MapsActivity.locFinish);
         txtDate.setText(formattedDate);
 
-
+        //Send info to Firebase
         btnSendDataFirebase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +106,6 @@ public class TrackAddInfo extends AppCompatActivity {
                     StorageReference ref = mStorage.child(FB_STORAGE_PATH + System.currentTimeMillis() + "." + getImageExt(imgUri));
 
                     //Add file to reference
-
                     ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -145,12 +142,10 @@ public class TrackAddInfo extends AppCompatActivity {
             }
         });
 
+        //Open gallery to select picture
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //    Intent intent = new Intent(Intent.ACTION_PICK);
-                //   intent.setType("image/*");
-                //   startActivityForResult(intent, GALLERY_INTENT);
                 picSwitch = false;
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
@@ -159,6 +154,7 @@ public class TrackAddInfo extends AppCompatActivity {
             }
         });
 
+        //Take picture
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,98 +162,14 @@ public class TrackAddInfo extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
-
-        /*
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        userId = user.getUid();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(userId);
-
-        Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        String formattedDate = df.format(c);
-
-        txtLocation.setText("bla lba");
-        txtDate.setText(formattedDate);
-
-
-
-        btnSendDataFirebase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String location = txtLocation.getText().toString().trim();
-                String date = txtDate.getText().toString().trim();
-                String title = eTxtTitle.getText().toString().trim();
-                String description = eTxtDescription.getText().toString().trim();
-
-                HashMap<String, String> dataMap = new HashMap<String, String>();
-
-                dataMap.put("Location", location);
-                dataMap.put("Date", date);
-                dataMap.put("Title", title);
-                dataMap.put("Description", description);
-
-                String info = "\n" + location + "\n" + date + "\n\n" + title + "\n" + description + "\n";
-                System.out.println("rrrrrrrrrrrr" + location + date + title + description);
-
-                mDatabase.push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(TrackAddInfo.this, "Stored..", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(TrackAddInfo.this, FavoriteTrips.class));
-                        } else {
-                            Toast.makeText(TrackAddInfo.this, "Error..", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-            }
-        });
-
-        btnGallery = (Button) findViewById(R.id.btnGallery);
-        mStorage = FirebaseStorage.getInstance().getReference();
-        mProgressDialog = new ProgressDialog(this);
-
-        btnGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, GALLERY_INTENT);
-            }
-        });
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
-            mProgressDialog.setMessage("Uploading...");
-            mProgressDialog.show();
-
-            Uri uri = data.getData();
-            System.out.println("fffffffffffffffffffffffffff" + uri);
-            StorageReference filepath = mStorage.child("Photos").child(uri.getLastPathSegment());
-
-            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(TrackAddInfo.this, "Upload done.", Toast.LENGTH_LONG).show();
-                    mProgressDialog.dismiss();
-                }
-            });
-        }
-*/
-    }
-
+    //Create file to picture taken
     private File createImageFile() throws IOException {
+
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        //File storageDir =  getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File storageDir =  getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -265,26 +177,28 @@ public class TrackAddInfo extends AppCompatActivity {
                 storageDir      /* directory */
         );
 
-        System.out.println("rrrrrrr" + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         System.out.println("xxxxxxxxx" + mCurrentPhotoPath);
         return image;
     }
 
+    //Take picture
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+
             // Create the File where the photo should go
             File photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                System.out.println("99999999999999999999999");
                 ex.printStackTrace();
             }
+
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
@@ -296,37 +210,24 @@ public class TrackAddInfo extends AppCompatActivity {
         }
     }
 
+    //Add picture to gallery
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        System.out.println("111111    " + mediaScanIntent);
         File f = new File(mCurrentPhotoPath);
-        //File f = new File("storage/emulated/0/"+DIRECTORY_DCIM, "rrrr.jpg");
-        System.out.println("222222   " + f);
         Uri contentUri = Uri.fromFile(f);
-        System.out.println("333333   " + contentUri);
         mediaScanIntent.setData(contentUri);
-        System.out.println("4444444    " + mediaScanIntent);
         this.sendBroadcast(mediaScanIntent);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(picSwitch + "tttttttttttttttttttttttttttttttttttttttt");
+
         if(picSwitch){
             galleryAddPic();
         } else {
 
             if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imgUri = data.getData();
-
-           /* try{
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(), imgUri);
-                imgPic.setImageBitmap(bm);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e){
-                e.printStackTrace();
-            }*/
             }
         }
     }

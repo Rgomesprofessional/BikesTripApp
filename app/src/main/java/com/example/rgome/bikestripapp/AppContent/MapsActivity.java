@@ -18,7 +18,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,6 +39,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    //Attributes
     private GoogleMap mMap;
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -74,11 +75,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    //Makes Start track button invisible
     public void showStartTrack() {
         btnStartTrack.setVisibility(View.INVISIBLE);
         btnFinishTrack.setVisibility(View.INVISIBLE);
     }
 
+    //Makes Finish track button Visible
     public void hideStartTrack() {
         btnStartTrack.setVisibility(View.INVISIBLE);
         btnFinishTrack.setVisibility(View.VISIBLE);
@@ -119,21 +122,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
+
                 lasKnowLocationStart = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 lasKnowLocationFinish = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                //Set user's location
 
+                //Set user's location start and finish track
                 startLat = lasKnowLocationStart.getLatitude();
                 startLng = lasKnowLocationStart.getLongitude();
                 finishLat = lasKnowLocationFinish.getLatitude();
                 finishLng = lasKnowLocationFinish.getLongitude();
 
                 LatLng locStartFinish = new LatLng(lasKnowLocation.getLatitude(), lasKnowLocation.getLongitude());
-                //mMap.clear();
                 mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).position(locStartFinish));
 
                 txtReady.setText("Ready to Go!!!");
 
+                //Draw Polyline between start and finish track
                 mMap.addPolyline(new PolylineOptions().add(
                         new LatLng(startLat, startLng),
                         new LatLng(finishLat, finishLng)
@@ -182,24 +186,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(new MarkerOptions().position(bikeStations).title(MainActivity.locations.get(i)));
         }
 
+        //Start track
         btnStartTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startLat = lasKnowLocation.getLatitude();
-               // startLng = lasKnowLocation.getLongitude();
-
                 hideStartTrack();
                 getAddress(startLat, startLng);
                 locStart = location;
             }
         });
 
+        //Finish Track
         btnFinishTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // finishLat = lasKnowLocation.getLatitude();
-              // finishLng = lasKnowLocation.getLongitude();
-
                 showStartTrack();
                 getAddress(finishLat, finishLng);
                 locFinish = location;
@@ -216,11 +216,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }.start();
             }
         });
-
-        //PolylineOptions routeDraw = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
-
     }
 
+    //Take latitude and longitude and transform in address
     public void getAddress(double lat, double lng) {
         Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
         try {
@@ -234,33 +232,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double longitude = obj.getLongitude();
             String currentCity= obj.getSubAdminArea();
             String currentState= obj.getAdminArea();
-          //  add = add + "\n" + obj.getCountryName();
-          //  add = add + "\n" + obj.getCountryCode();
-          //  add = add + "\n" + obj.getAdminArea();
-          //  add = add + "\n" + obj.getPostalCode();
-           // add = add + "\n" + obj.getSubAdminArea();
-          //  add = add + "\n" + obj.getLocality();
-          //  add = add + "\n" + obj.getSubThoroughfare();
-
-            /*
-            System.out.println("obj.getCountryName()"+obj.getCountryName());
-            System.out.println("obj.getCountryCode()"+obj.getCountryCode());
-            System.out.println("obj.getAdminArea()"+obj.getAdminArea());
-            System.out.println("obj.getPostalCode()"+obj.getPostalCode());
-            System.out.println("obj.getSubAdminArea()"+obj.getSubAdminArea());
-            System.out.println("obj.getLocality()"+obj.getLocality());
-            System.out.println("obj.getSubThoroughfare()"+obj.getSubThoroughfare());
-            */
-
+            /*add = add + "\n" + obj.getCountryName();
+            add = add + "\n" + obj.getCountryCode();
+            add = add + "\n" + obj.getAdminArea();
+            add = add + "\n" + obj.getPostalCode();
+            add = add + "\n" + obj.getSubAdminArea();
+            add = add + "\n" + obj.getLocality();
+            add = add + "\n" + obj.getSubThoroughfare();*/
 
             location = add;
 
-            //Log.v("IGA", "Address" + add);
-
-            // Toast.makeText(this, "Address=>" + add,
-            // Toast.LENGTH_SHORT).show();
-
-            // TennisAppActivity.showDialog(add);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

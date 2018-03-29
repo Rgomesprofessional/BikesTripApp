@@ -1,16 +1,8 @@
 package com.example.rgome.bikestripapp.AppContent;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.rgome.bikestripapp.MainActivity;
-import com.example.rgome.bikestripapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +18,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class FetchDataWeather extends AsyncTask<Void, Void, Void> {
-    //Variables
+
+    //Attributes
     String data = "";
 
     @Override
@@ -40,7 +33,7 @@ public class FetchDataWeather extends AsyncTask<Void, Void, Void> {
             String encodedLatitude = URLEncoder.encode((String) stationLat, "UTF-8");
             String encodedLongitude = URLEncoder.encode((String) stationLng, "UTF-8");
 
-            ////Connect with JSON
+            //Connect with JSON
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + encodedLatitude + "&lon=" + encodedLongitude + "&APPID=4803ebf1908b90e03d4a3d8306cd7ff3&units=metric");
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

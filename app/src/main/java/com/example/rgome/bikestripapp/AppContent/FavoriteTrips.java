@@ -18,12 +18,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class FavoriteTrips extends AppCompatActivity {
 
+    //Attributes
     public static ArrayList<DatabaseReference> dataReference = new ArrayList<DatabaseReference>();
     public static ArrayList<DatabaseReference> bu = new ArrayList<DatabaseReference>();
     public static DatabaseReference storeReference;

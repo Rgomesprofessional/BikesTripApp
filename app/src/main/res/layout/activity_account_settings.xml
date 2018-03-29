@@ -10,58 +10,58 @@
         android:id="@+id/old_email"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:hint="hint_email"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        tools:layout_editor_absoluteY="82dp"
-        tools:layout_editor_absoluteX="8dp"
         android:layout_above="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp" />
+        android:layout_marginBottom="17dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="82dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/newPassword"
+        android:layout_toEndOf="@+id/progressBar"
         android:focusableInTouchMode="true"
-        android:hint="prompt_password"
+        android:hint="Current Password"
         android:imeActionId="@+id/login"
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
         tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="125dp"
-        android:layout_above="@+id/newPassword"
-        android:layout_toEndOf="@+id/progressBar" />
+        tools:layout_editor_absoluteY="125dp" />
 
     <EditText
         android:id="@+id/newPassword"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/changePass"
+        android:layout_alignParentStart="true"
         android:focusableInTouchMode="true"
-        android:hint="new_pass"
+        android:hint="New Password"
         android:imeActionId="@+id/login"
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
         tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="168dp"
-        android:layout_above="@+id/changePass"
-        android:layout_alignParentStart="true" />
+        tools:layout_editor_absoluteY="168dp" />
 
     <Button
         android:id="@+id/changePass"
         style="?android:textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/remove"
+        android:layout_centerHorizontal="true"
         android:background="@color/colorPrimaryDark"
-        android:text="btn_change"
+        android:text="Change"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        tools:layout_editor_absoluteY="211dp"
         tools:layout_editor_absoluteX="199dp"
-        android:layout_above="@+id/remove"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="211dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -76,52 +76,52 @@
         style="?android:textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/change_password_button"
+        android:layout_alignStart="@+id/changePass"
         android:background="@color/colorPrimaryDark"
-        android:text="btn_remove"
+        android:text="Remove"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        tools:layout_editor_absoluteY="259dp"
         tools:layout_editor_absoluteX="199dp"
-        android:layout_above="@+id/change_password_button"
-        android:layout_alignStart="@+id/changePass" />
+        tools:layout_editor_absoluteY="259dp" />
 
     <Button
         android:id="@+id/change_password_button"
         style="?android:textAppearanceSmall"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="change_password"
+        android:layout_above="@+id/remove_user_button"
+        android:layout_alignStart="@+id/remove_user_button"
+        android:text="Change Password"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="312dp"
-        android:layout_above="@+id/remove_user_button"
-        android:layout_alignStart="@+id/remove_user_button" />
+        tools:layout_editor_absoluteY="312dp" />
 
     <Button
         android:id="@+id/remove_user_button"
         style="?android:textAppearanceSmall"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="remove_user"
+        android:layout_above="@+id/sign_out"
+        android:layout_alignStart="@+id/sign_out"
+        android:text="Remove User"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="408dp"
-        android:layout_above="@+id/sign_out"
-        android:layout_alignStart="@+id/sign_out" />
+        tools:layout_editor_absoluteY="408dp" />
 
     <Button
         android:id="@+id/sign_out"
         style="?android:textAppearanceSmall"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:background="@color/colorPrimary"
-        android:text="btn_sign_out"
+        android:text="Sign Out"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="456dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="456dp" />
 
     <TextView
         android:id="@+id/useremail"
@@ -131,7 +131,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
         android:gravity="center"
-        android:hint="email_id"
+        android:hint="Email ID"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
 

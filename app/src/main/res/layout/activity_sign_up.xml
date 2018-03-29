@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/cast_expanded_controller_ad_container_white_stripe_color"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp">
@@ -29,12 +29,10 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
-
-
+            android:textColor="@android:color/black" />
 
 
         <EditText
@@ -42,12 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
-            android:hint="password"
+            android:hint="Password"
             android:imeActionId="@+id/login"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black" />
 
 
         <Button
@@ -56,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
-            android:text="sign_in_short"
+            android:background="@color/colorPrimary"
+            android:text="Sign In"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -67,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:text="forgot_password"
+            android:text="Forgot Password"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent" />
 
@@ -79,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:text="ink_to_login"
+            android:text="Login"
             android:textAllCaps="false"
             android:textSize="15sp" />
     </LinearLayout>

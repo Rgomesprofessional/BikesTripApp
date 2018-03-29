@@ -7,7 +7,8 @@ import android.widget.TextView;
 import com.example.rgome.bikestripapp.R;
 
 public class About extends AppCompatActivity {
-    //Variables
+
+    //Attributes
     private TextView txtAbout1;
     private TextView txtAbout2;
     private TextView txtAbout3;

@@ -1,9 +1,6 @@
 package com.example.rgome.bikestripapp.AppContent;
 
-/**
- * Created by rgome on 27/03/2018.
- */
-
+//Class to get all info related the trip
 public class ImageUpload {
 
     public String locStart;

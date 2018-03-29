@@ -1,16 +1,8 @@
 package com.example.rgome.bikestripapp.AppContent;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.rgome.bikestripapp.MainActivity;
-import com.example.rgome.bikestripapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +19,8 @@ import java.net.URLEncoder;
 
 
 public class FetchDataStations extends AsyncTask<Void, Void, Void> {
-    //Variables
+
+    //Attributes
     String data = "";
 
     @Override
@@ -37,7 +30,7 @@ public class FetchDataStations extends AsyncTask<Void, Void, Void> {
             //Get city from MainActivity and encode to URL
             String encodedCityName = URLEncoder.encode((String) MainActivity.selectCity.getSelectedItem(), "UTF-8");
 
-            ////Connect with JSON
+            //Connect with JSON
             URL url = new URL("https://api.jcdecaux.com/vls/v1/stations?contract=" + encodedCityName + "&apiKey=7ccb3bc35d604a54e3405c470c4f333aee70a303");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
