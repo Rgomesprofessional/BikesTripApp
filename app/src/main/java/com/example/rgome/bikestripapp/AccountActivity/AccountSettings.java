@@ -17,7 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+/*
+Clinton Bates 15703.
+*/
 public class AccountSettings extends AppCompatActivity {
 
     //Attributes
