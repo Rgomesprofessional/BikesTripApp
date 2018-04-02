@@ -38,6 +38,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+
+/*
+JOEL CARLOS ID 15464
+ */
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     //Attributes

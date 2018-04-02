@@ -7,6 +7,10 @@ import android.widget.ListView;
 
 import com.example.rgome.bikestripapp.R;
 
+/*
+JOEL CARLOS ID 15464
+ */
+
 public class Weather extends AppCompatActivity {
 
     @Override
