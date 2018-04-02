@@ -15,6 +15,9 @@ import com.example.rgome.bikestripapp.MainActivity;
 import com.example.rgome.bikestripapp.R;
 
 import java.util.ArrayList;
+/*
+Dionisio Prazeres 16242
+*/
 
 public class Stations extends AppCompatActivity {
 

@@ -17,6 +17,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+/*
+Dionisio Prazeres 16242
+*/
 
 public class FetchDataStations extends AsyncTask<Void, Void, Void> {
 
