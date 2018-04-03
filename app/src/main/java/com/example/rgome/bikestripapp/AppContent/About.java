@@ -26,7 +26,5 @@ public class About extends AppCompatActivity {
         txtAbout2 = (TextView) findViewById(R.id.txtAbout2);
         txtAbout3 = (TextView) findViewById(R.id.txtAbout3);
         txtAbout4 = (TextView) findViewById(R.id.txtAbout4);
-        txtAbout5 = (TextView) findViewById(R.id.txtAbout5);
-        txtAbout6 = (TextView) findViewById(R.id.txtAbout6);
     }
 }

@@ -41,29 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:layout_below="@+id/txtAbout3"
+        android:layout_marginTop="25dp"
         android:text="@string/txt_about_4" />
 
-    <TextView
-        android:id="@+id/txtAbout5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtAbout4"
-        android:layout_marginTop="12dp"
-        android:autoLink="web"
-        android:clickable="false"
-        android:text="@string/txt_about_5"
-        android:textColorLink="@android:color/holo_blue_dark" />
-
-    <TextView
-        android:id="@+id/txtAbout6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtAbout5"
-        android:layout_marginTop="13dp"
-        android:autoLink="web"
-        android:text="@string/txt_about_6"
-        android:textColorLink="@android:color/holo_blue_dark" />
 
 </RelativeLayout>
