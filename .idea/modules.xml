@@ -4,9 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BikesTripApp.iml" filepath="$PROJECT_DIR$/.idea/BikesTripApp.iml" />
       <module fileurl="file://C:\Users\DIONISIO\AndroidStudioProjects\BikesTripApp\BikesTripApp.iml" filepath="C:\Users\DIONISIO\AndroidStudioProjects\BikesTripApp\BikesTripApp.iml" />
+      <module fileurl="file://C:\Users\pc\Downloads\BikkesDublin2\BikesTripApp\.idea\BikesTripApp.iml" filepath="C:\Users\pc\Downloads\BikkesDublin2\BikesTripApp\.idea\BikesTripApp.iml" />
       <module fileurl="file://C:\Users\DIONISIO\AndroidStudioProjects\BikesTripApp\.idea\BikesTripApp.iml" filepath="C:\Users\DIONISIO\AndroidStudioProjects\BikesTripApp\.idea\BikesTripApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\DIONISIO\AndroidStudioProjects\BikesTripApp\app\app.iml" filepath="C:\Users\DIONISIO\AndroidStudioProjects\BikesTripApp\app\app.iml" />
+      <module fileurl="file://C:\Users\pc\Downloads\BikkesDublin2\BikesTripApp\app\app.iml" filepath="C:\Users\pc\Downloads\BikkesDublin2\BikesTripApp\app\app.iml" />
     </modules>
   </component>
 </project>
