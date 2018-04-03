@@ -18,9 +18,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 
-
 //15761 David Kenny//
-
 
 public class FetchDataWeather extends AsyncTask<Void, Void, Void> {
 
