@@ -1,5 +1,7 @@
 package com.example.rgome.bikestripapp.AppContent;
 
+// 15761 David Kenny//
+
 //Class to get all info related the trip
 public class ImageUpload {
 
